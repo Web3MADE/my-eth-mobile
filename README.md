@@ -6,7 +6,7 @@ Fully decentralized, no middleman.
 
 ## TODO:
 
-- Implement Home screen (Tamagui CSS, assets, mock data)
+- Implement Home screen = Do the whole fucking thing bro
 - Define API endpoints/resources needed
 - Finish Home Screen logic (API, PrivySDK, Real logic)
 - Implement Real API for Home Screen
