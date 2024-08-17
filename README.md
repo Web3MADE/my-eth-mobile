@@ -11,6 +11,15 @@ Fully decentralized, no middleman.
 - Finish Home Screen logic (API, PrivySDK, Real logic)
 - Implement Real API for Home Screen
 
+## Screens
+
+This app will contain the following screens:
+
+- Login
+- Home: Showing all assets under management
+- Invest: Actionable screen for investing
+- Statistics: Showing all statistics for current investments
+
 ### Smart Contracts
 
 Brainstorming what contracts could be used here.
