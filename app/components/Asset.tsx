@@ -1,7 +1,22 @@
 import { StyleSheet, View } from "react-native";
 import { Image, Text } from "tamagui";
+import { usePrices } from "../context/PriceContext";
 
-export default function Asset() {
+interface AssetProps {
+  symbolOne: string;
+  symbolTwo: string;
+}
+
+export default function Asset({ symbolOne, symbolTwo }: AssetProps) {
+  const { prices, isLoading, isError } = usePrices();
+
+  if (isLoading) return <Text>Loading...</Text>;
+  if (isError) return <Text>Error fetching price data.</Text>;
+
+  const priceData = prices.find((p) => p.symbol === `${symbolOne}${symbolTwo}`);
+
+  console.log("priceData", priceData);
+
   return (
     <View style={styles.assetsContainer}>
       <Text style={styles.assetsTitle}>Assets</Text>
@@ -17,11 +32,13 @@ export default function Asset() {
           style={styles.assetImage}
         />
         <View style={styles.assetName}>
-          <Text style={styles.assetNameText}>Ethereum</Text>
-          <Text style={styles.assetAmount}>2.5 ETH</Text>
+          <Text style={styles.assetNameText}>
+            {symbolOne}/{symbolTwo}
+          </Text>
+          {/* <Text style={styles.assetAmount}>2.5 ETH</Text> */}
         </View>
         <View style={styles.assetStats}>
-          <Text style={styles.assetPrice}>$3,500</Text>
+          <Text style={styles.assetPrice}>${priceData?.price}</Text>
           <Text style={styles.assetChange}>+1.5%</Text>
         </View>
       </View>

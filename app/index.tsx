@@ -4,23 +4,32 @@ import { H1, TamaguiProvider } from "tamagui";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import appConfig from "../tamagui.config";
 import Asset from "./components/Asset";
+import { PriceProvider } from "./context/PriceContext";
 
 // TODO: JUST FUCKING DO IT.
 export default function Page() {
   const queryClient = new QueryClient();
   // 1. Setup PrivySDK with React Native (pending approval via email)
   // 2. Setup API to fetch price data
+  const symbols = [
+    { symbolOne: "ETH", symbolTwo: "USDT" },
+    { symbolOne: "ARB", symbolTwo: "USDT" },
+    { symbolOne: "BTC", symbolTwo: "USDT" },
+  ];
+
   return (
     <QueryClientProvider client={queryClient}>
-      <TamaguiProvider config={appConfig}>
-        <View style={styles.container}>
-          <Text style={styles.walletAddress}>My Wallet 0x123...</Text>
-          <H1 style={styles.totalAmount}>Total Amount</H1>
-          <Asset />
-          <Asset />
-          <Asset />
-        </View>
-      </TamaguiProvider>
+      <PriceProvider symbols={symbols}>
+        <TamaguiProvider config={appConfig}>
+          <View style={styles.container}>
+            <Text style={styles.walletAddress}>My Wallet 0x123...</Text>
+            <H1 style={styles.totalAmount}>Total Amount</H1>
+            <Asset symbolOne="ETH" symbolTwo="USDT" />
+            <Asset symbolOne="ARB" symbolTwo="USDT" />
+            <Asset symbolOne="BTC" symbolTwo="USDT" />
+          </View>
+        </TamaguiProvider>
+      </PriceProvider>
     </QueryClientProvider>
   );
 }
