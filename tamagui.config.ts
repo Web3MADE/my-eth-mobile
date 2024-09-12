@@ -25,6 +25,10 @@ import {
 const interFont = createFont({
   family: "Inter, Helvetica, Arial, sans-serif",
 
+  fontStyle: {
+    true: "normal",
+  },
+
   size: {
     true: 12,
 
